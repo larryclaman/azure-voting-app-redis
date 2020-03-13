@@ -10,6 +10,8 @@ RUN  mkdir -p /home/LogFiles \
      && apt install -y --no-install-recommends vim curl wget tcptraceroute
 #&& apt install -y --no-install-recommends openssh-server vim curl wget tcptraceroute
 
+RUN  apt upgrade -y
+
 RUN  pip install redis
 
 EXPOSE 2222 80
