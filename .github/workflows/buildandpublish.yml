@@ -34,8 +34,24 @@ jobs:
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
           else
-            docker build . --file azure-vote/Dockerfile
+            docker build . --file azure-vote/Dockerfile --tag $IMAGE_NAME
           fi
+
+      - name: Container image scan
+        uses: Azure/container-scan@v0
+        with:
+          # Docker image to scan
+          image-name: $IMAGE_NAME
+          # Minimum severities of vulnerabilities to be displayed (UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL)
+          severity-threshold: HIGH # optional, default is HIGH
+          # Username to authenticate to the Docker registry
+          #username: # optional
+          # Password to authenticate to the Docker registry
+          #password: # optional
+          # Github token
+          #token: # default is ${{ github.token }}
+          # Add additional checks to ensure the image is secure and follows best practices and CIS standards
+          run-quality-checks: true # optional, default is true
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
