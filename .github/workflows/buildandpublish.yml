@@ -1,6 +1,8 @@
 name: DockerBuildandPublish
 
 on:
+  workflow_dispatch:
+  
   push:
     # Publish `$default-branch` as Docker `latest` image.
     branches:
