@@ -42,7 +42,6 @@ jobs:
         
     # Create namespace if doesn't exist
     - run: |
-        az aks install-cli
         kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
   
   
