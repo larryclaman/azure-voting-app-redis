@@ -29,7 +29,7 @@ env:
 jobs:
   deploy:
     name: Deploy to AKS
-    runs-on: ghagent  ## THIS IS WHERE WE SET THE PRIVATE RUNNER
+    runs-on: self-hosted  ## THIS IS WHERE WE SET THE PRIVATE RUNNER
     steps:
     - uses: actions/checkout@v2
   
